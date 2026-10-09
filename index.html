@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Việt Phục Remix - Cổ Phục Studio 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #991b1b;
+            --primary-hover: #7f1d1d;
+            --gold-title: #fde047;
+            --gold-sub: #fef08a;
+            --gold-accent: #f59e0b;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-main: #1c1917;
+            --text-muted: #57534e;
+            --border: #f3d5b5;
+            --safe-color: #15803d;
+            --warning-color: #b45309;
+            --violation-color: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6b0c10 0%, #400407 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 28px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* LỚP HỌA TIẾT TRỐNG ĐỒNG Ở NỬA BÊN PHẢI (NẰM DƯỚI CÙNG, KHÔNG CHẮN CHUỘT) */
+        .dong-son-bg {
+            position: fixed;
+            top: 50%;
+            right: -220px;
+            transform: translateY(-50%);
+            width: 780px;
+            height: 780px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23fbbf24' stop-opacity='0.45'/%3E%3Cstop offset='70%25' stop-color='%23d97706' stop-opacity='0.25'/%3E%3Cstop offset='100%25' stop-color='%2392400e' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='300' cy='300' r='290' fill='none' stroke='%23f59e0b' stroke-width='4' opacity='0.5'/%3E%3Ccircle cx='300' cy='300' r='270' fill='none' stroke='%23f59e0b' stroke-width='2' opacity='0.4'/%3E%3Ccircle cx='300' cy='300' r='230' fill='none' stroke='%23f59e0b' stroke-width='6' stroke-dasharray='6 8' opacity='0.5'/%3E%3Ccircle cx='300' cy='300' r='180' fill='none' stroke='%23f59e0b' stroke-width='3' opacity='0.4'/%3E%3Ccircle cx='300' cy='300' r='140' fill='none' stroke='%23f59e0b' stroke-width='5' stroke-dasharray='12 12' opacity='0.4'/%3E%3Ccircle cx='300' cy='300' r='90' fill='none' stroke='%23f59e0b' stroke-width='2' opacity='0.5'/%3E%3Cpath d='M300 190 L315 285 L410 300 L315 315 L300 410 L285 315 L190 300 L285 285 Z' fill='%23fbbf24' opacity='0.6'/%3E%3Cpath d='M300 215 L310 290 L385 300 L310 310 L300 385 L290 310 L215 300 L290 290 Z' fill='%23d97706' opacity='0.5' transform='rotate(45 300 300)'/%3E%3Ccircle cx='300' cy='300' r='45' fill='url(%23g)'/%3E%3C/svg%3E") no-repeat center center;
+            background-size: contain;
+            opacity: 0.38;
+            pointer-events: none !important;
+            z-index: 0;
+            filter: drop-shadow(0 0 35px rgba(245, 158, 11, 0.4));
+        }
+
+        header {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* TIÊU ĐỀ MÀU VÀNG HOÀNG GIA */
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.85rem;
+            font-weight: 900;
+            color: var(--gold-title);
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.5);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        /* SLOGAN MÀU VÀNG NHẠT ẤM ÁP */
+        header p {
+            color: var(--gold-sub);
+            font-size: 1.05rem;
+            font-weight: 500;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 26px;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 880px) {
+            .container { grid-template-columns: 1fr; }
+            .dong-son-bg { display: none; }
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+        }
+
+        h2.panel-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #7f1d1d;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #fee2e2;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #78350f;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* LƯỚI CHỌN TRANG PHỤC */
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 520px) {
+            .outfit-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .outfit-card {
+            border: 2px solid #e7e5e4;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            background: #fff;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ngăn các phần tử con chiếm sự kiện click */
+        .outfit-card img, .outfit-card .name {
+            pointer-events: none !important;
+        }
+
+        .outfit-card img {
+            width: 100%;
+            height: 95px;
+            object-fit: cover;
+            display: block;
+            background-color: #f5f5f4;
+        }
+
+        .outfit-card .name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            padding: 8px 4px;
+        }
+
+        .outfit-card.active {
+            border-color: #b91c1c;
+            background: #fef2f2;
+            box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.2);
+        }
+
+        .outfit-card.active .name {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d6d3d1;
+            font-size: 0.95rem;
+            background: #fff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-btn {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid #d6d3d1;
+            background: #fff;
+            font-size: 0.85rem;
+            color: #44403c;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .tag-btn.active {
+            background: #fef2f2;
+            border-color: #b91c1c;
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            margin-top: 6px;
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.35);
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover { 
+            background: linear-gradient(135deg, #991b1b, #7f1d1d);
+            transform: translateY(-1px);
+        }
+
+        /* KHUNG HIỂN THỊ LOOKBOOK BÊN PHẢI */
+        .result-empty {
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .mockup-wrapper {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: #1c1917;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .mockup-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .mockup-overlay-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .badge-safe { background: rgba(21, 128, 61, 0.95); color: #fff; }
+        .badge-warning { background: rgba(180, 83, 9, 0.95); color: #fff; }
+        .badge-violation { background: rgba(185, 28, 28, 0.95); color: #fff; }
+
+        .violation-warning-box {
+            position: absolute;
+            inset: 0;
+            background: rgba(28, 25, 23, 0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .meter-container {
+            margin: 12px 0 16px 0;
+        }
+
+        .meter-bar {
+            height: 8px;
+            background: #e7e5e4;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #f59e0b);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .heritage-card {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.1);
+        }
+
+        .heritage-card h4 {
+            color: #92400e;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .heritage-card p {
+            font-size: 0.85rem;
+            color: #78350f;
+            line-height: 1.45;
+        }
+
+        .prompt-preview {
+            background: #1c1917;
+            color: #d6d3d1;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 4px solid #fecaca;
+            border-top: 4px solid #b91c1c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<!-- HÌNH TRỐNG ĐỒNG ĐÔNG SƠN NẰM Ở NỬA BÊN PHẢI -->
+<div class="dong-son-bg"></div>
+
+<header>
+    <h1>Việt Phục Remix</h1>
+    <p>Di sản x Streetwear: Phối trang phục truyền thống chuẩn văn hóa cùng Google Gemini AI</p>
+</header>
+
+<div class="container">
+    <!-- PANEL TRÁI: ĐIỀU KHIỂN MIX & MATCH -->
+    <div class="panel">
+        <h2 class="panel-title">🎨 Tùy Biến Set Đồ</h2>
+        
+        <div class="form-group">
+            <label>1. Chọn Trang Phục Truyền Thống</label>
+            <div class="outfit-grid" id="outfitGrid">
+                <!-- Áo Dài -->
+                <div class="outfit-card active" 
+                     data-name="Áo Dài Truyền Thống" 
+                     data-img="https://congstudio.vn/wp-content/uploads/2024/06/Cho-thue-ao-dai-chup-anh-dep-chat-luong-uy-tin-2.jpg">
+                    <img src="https://congstudio.vn/wp-content/uploads/2024/06/Cho-thue-ao-dai-chup-anh-dep-chat-luong-uy-tin-2.jpg" 
+                         alt="Áo Dài" referrerpolicy="no-referrer" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400'">
+                    <div class="name">Áo Dài</div>
+                </div>
+
+                <!-- Áo Tứ Thân -->
+                <div class="outfit-card" 
+                     data-name="Áo Tứ Thân Bắc Bộ" 
+                     data-img="https://trangphuchonghanh.com/files/tin/49/jpg/dac-diem-noi-bat-cua-ao-tu-than-truyen-thong-ma-ban-nen-biet.jpg">
+                    <img src="https://trangphuchonghanh.com/files/tin/49/jpg/dac-diem-noi-bat-cua-ao-tu-than-truyen-thong-ma-ban-nen-biet.jpg" 
+                         alt="Áo Tứ Thân" referrerpolicy="no-referrer" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400'">
+                    <div class="name">Áo Tứ Thân</div>
+                </div>
+
+                <!-- Áo Bà Ba -->
+                <div class="outfit-card" 
+                     data-name="Áo Bà Ba Nam Bộ" 
+                     data-img="https://khankm0.com/media/uploads/%C3%A1o%20b%C3%A0%20ba/cho-thue-ao-ba-ba%20(1).jpeg">
+                    <img src="https://khankm0.com/media/uploads/%C3%A1o%20b%C3%A0%20ba/cho-thue-ao-ba-ba%20(1).jpeg" 
+                         alt="Áo Bà Ba" referrerpolicy="no-referrer" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400'">
+                    <div class="name">Áo Bà Ba</div>
+                </div>
+
+                <!-- Trang Phục H'Mông -->
+                <div class="outfit-card" 
+                     data-name="Trang Phục Thổ Cẩm H'Mông" 
+                     data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYY-gE4a9nb5HWndlTQkYSFQXFjgH-0wsajFdCFxeiqA&s=10">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYY-gE4a9nb5HWndlTQkYSFQXFjgH-0wsajFdCFxeiqA&s=10" 
+                         alt="Trang Phục H'Mông" referrerpolicy="no-referrer">
+                    <div class="name">Trang Phục H'Mông</div>
+                </div>
+
+                <!-- Áo Nhật Bình -->
+                <div class="outfit-card" 
+                     data-name="Áo Nhật Bình Cung Đình" 
+                     data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdnSnQrQRjuH7nRBO9b5OBAIEfqSJ09GOx6AUs1DfT0w&s=10">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdnSnQrQRjuH7nRBO9b5OBAIEfqSJ09GOx6AUs1DfT0w&s=10" 
+                         alt="Áo Nhật Bình" referrerpolicy="no-referrer">
+                    <div class="name">Áo Nhật Bình</div>
+                </div>
+
+                <!-- Áo Chàm -->
+                <div class="outfit-card" 
+                     data-name="Áo Chàm Truyền Thống Tây Bắc" 
+                     data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdgU2PCnVPypqSSexXhphdQnDe9NdkPzOby79LlruDA&s=10">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdgU2PCnVPypqSSexXhphdQnDe9NdkPzOby79LlruDA&s=10" 
+                         alt="Áo Chàm" referrerpolicy="no-referrer">
+                    <div class="name">Áo Chàm</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>2. Quy cách trang phục (Thử nghiệm Cultural Guardrail)</label>
+            <select id="lapelDirection">
+                <option value="Chuẩn mực trang phục truyền thống">Chuẩn mực trang phục truyền thống (An toàn)</option>
+                <option value="Cố tình biến tấu sai quy chuẩn / mặc sai bối cảnh">Cố tình biến tấu sai quy chuẩn / sai bối cảnh (Thử nghiệm cảnh báo)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>3. Phụ kiện Gen Z phối kèm (Bấm để chọn/bỏ)</label>
+            <div class="tag-group" id="accessoryTags">
+                <button type="button" class="tag-btn active" data-val="Sneaker cổ thấp">👟 Sneaker cổ thấp</button>
+                <button type="button" class="tag-btn active" data-val="Túi tote canvas">👜 Túi tote canvas</button>
+                <button type="button" class="tag-btn" data-val="Tai nghe chụp tai Over-ear">🎧 Tai nghe chụp tai</button>
+                <button type="button" class="tag-btn" data-val="Kính râm retro">🕶️ Kính râm retro</button>
+                <button type="button" class="tag-btn" data-val="Áo khoác Blazer oversize">🧥 Blazer oversize</button>
+                <button type="button" class="tag-btn" data-val="Boots da cổ cao">👢 Boots da cổ cao</button>
+                <button type="button" class="tag-btn" data-val="Nón lá hiện đại">🌾 Nón lá cách điệu</button>
+                <button type="button" class="tag-btn" data-val="Khăn rằn Nam Bộ">🧣 Khăn rằn phối trẻ trung</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>4. Bối cảnh & Sự kiện</label>
+            <select id="contextEvent">
+                <option value="Chụp ảnh kỷ yếu tại trường học / Hoàng Thành">Chụp ảnh kỷ yếu thanh xuân</option>
+                <option value="Dạo phố cổ cuối tuần phong cách Streetwear">Dạo phố cổ cuối tuần (Streetwear)</option>
+                <option value="Lễ hội văn hóa dân tộc tại trường">Lễ hội văn hóa tại trường Đại học</option>
+                <option value="Du lịch trải nghiệm miền Tây / Tây Bắc">Du lịch trải nghiệm địa phương</option>
+                <option value="Đi lễ chùa đầu xuân thanh tịnh">Đi lễ chùa đầu xuân (Chốn tôn nghiêm)</option>
+            </select>
+        </div>
+
+        <button class="btn-submit" id="btnSubmit">✨ Thẩm Định & Render Lookbook</button>
+    </div>
+
+    <!-- PANEL PHẢI: KẾT QUẢ LOOKBOOK -->
+    <div class="panel">
+        <h2 class="panel-title">📸 Lookbook AI & Thẻ Di Sản</h2>
+        
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+            <p style="color: #7f1d1d; font-size: 0.95rem; font-weight: 700;">Gemini đang phân tích quy chuẩn văn hóa...</p>
+        </div>
+
+        <div id="emptyState" class="result-empty">
+            <div style="font-size: 3.5rem; margin-bottom: 10px;">👘</div>
+            <p style="font-weight: 700; color: #44403c;">Sẵn sàng phối đồ!</p>
+            <p style="font-size: 0.9rem; margin-top: 4px;">Hãy chọn trang phục và phụ kiện bên trái rồi nhấn nút Thẩm định.</p>
+        </div>
+
+        <div id="resultCard" style="display: none;">
+            <div class="mockup-wrapper">
+                <img id="mockupImg" class="mockup-img" src="" alt="Mockup Visual" referrerpolicy="no-referrer">
+                <div id="statusBadge" class="mockup-overlay-badge"></div>
+                
+                <div id="violationOverlay" class="violation-warning-box">
+                    <div style="font-size: 2.5rem; margin-bottom: 6px;">🚫</div>
+                    <h3 style="font-size: 1.05rem; margin-bottom: 4px; color: #fecaca;">CHẶN TRỰC QUAN HÓA</h3>
+                    <p style="font-size: 0.82rem; line-height: 1.4; color: #e7e5e4;">Phát hiện cách kết hợp có thể làm sai lệch giá trị hoặc tôn nghiêm văn hóa. Hệ thống tạm dừng hiển thị mockup để bảo vệ bản sắc di sản.</p>
+                </div>
+            </div>
+            
+            <h3 id="outfitTitle" style="font-size: 1.15rem; margin-bottom: 6px; color: #991b1b;"></h3>
+            <p id="culturalNote" style="font-size: 0.9rem; color: #292524; margin-bottom: 12px; line-height: 1.5;"></p>
+
+            <div class="meter-container">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: #44403c;">
+                    <span>Chỉ số hòa hợp phong cách:</span>
+                    <span id="scoreText">92/100</span>
+                </div>
+                <div class="meter-bar">
+                    <div id="scoreFill" class="meter-fill"></div>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <h4 id="heritageTitle">Thẻ Tri Thức Di Sản</h4>
+                <p id="heritageDesc"></p>
+            </div>
+
+            <label>Master Prompt tạo ảnh (Imagen 3 API):</label>
+            <div class="prompt-preview" id="imagePromptText"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // =========================================================================
+    // NẾU CÓ GEMINI API KEY, BẠN DÁN VÀO GIỮA 2 DẤU NGOẶC KÉP NÀY:
+    // =========================================================================
+    const GEMINI_API_KEY = "AQ.Ab8RN6JJp23Qp5sAObQPTqeFFvVN_vLAsfuEB-c5XAf_dz5Dhw"; 
+
+    let currentDress = "Áo Dài Truyền Thống";
+    let currentImg = "https://congstudio.vn/wp-content/uploads/2024/06/Cho-thue-ao-dai-chup-anh-dep-chat-luong-uy-tin-2.jpg";
+
+
+    document.addEventListener('click', function(e) {
+        // 1. Click chọn trang phục
+        const card = e.target.closest('.outfit-card');
+        if (card) {
+            document.querySelectorAll('.outfit-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            currentDress = card.getAttribute('data-name');
+            currentImg = card.getAttribute('data-img');
+            return;
+        }
+
+        // 2. Click chọn/bỏ chọn phụ kiện
+        const tag = e.target.closest('.tag-btn');
+        if (tag) {
+            tag.classList.toggle('active');
+            return;
+        }
+
+        // 3. Click nút Submit Thẩm định
+        if (e.target.closest('#btnSubmit')) {
+            submitLookbook();
+            return;
+        }
+    });
+
+    async function submitLookbook() {
+        const lapel = document.getElementById('lapelDirection').value;
+        const context = document.getElementById('contextEvent').value;
+        const activeTags = document.querySelectorAll('#accessoryTags .tag-btn.active');
+        const accessories = Array.from(activeTags).map(b => b.getAttribute('data-val'));
+
+        document.getElementById('emptyState').style.display = 'none';
+        document.getElementById('resultCard').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+
+        let resultData;
+
+        if (GEMINI_API_KEY && GEMINI_API_KEY.trim() !== "") {
+            try {
+                resultData = await callGeminiAPI(GEMINI_API_KEY.trim(), currentDress, lapel, accessories, context);
+            } catch (err) {
+                console.warn("Chuyển mượt sang bộ phân tích di sản dự phòng:", err);
+                resultData = generateLocalSimulation(currentDress, lapel, accessories, context);
+            }
+        } else {
+            await new Promise(r => setTimeout(r, 400));
+            resultData = generateLocalSimulation(currentDress, lapel, accessories, context);
+        }
+
+        renderResult(resultData, currentImg);
+    }
+
+    async function callGeminiAPI(apiKey, dress, lapel, accessories, context) {
+        const systemPrompt = `Bạn là Chuyên gia Cố vấn Văn hóa Di sản Việt Nam kiêm Stylist thời trang Gen Z.
+Đánh giá cách phối đồ giữa trang phục truyền thống Việt Nam và phụ kiện đương đại.
+QUY TẮC CỐT LÕI:
+- Áo dài, Áo tứ thân, Áo bà ba, Trang phục H'Mông, Áo Nhật Bình, Áo chàm đều là di sản quý báu.
+- Nếu người dùng chọn "Cố tình biến tấu sai quy chuẩn / mặc sai bối cảnh" hoặc phối phản cảm: Gán Violation.
+- Phối cùng sneaker, túi tote, blazer nhẹ nhàng: Gán Safe.
+Trả về duy nhất định dạng JSON chuẩn:
+{
+  "status": "Safe" | "Warning" | "Violation",
+  "outfit_name": "Tên set đồ ấn tượng",
+  "cultural_analysis": "Nhận xét văn hóa ngắn gọn dưới 50 từ",
+  "harmony_score": 90,
+  "heritage_title": "Tên trang phục & Xuất xứ",
+  "heritage_meaning": "Ý nghĩa lịch sử ngắn gọn",
+  "image_prompt": "Chi tiết prompt tiếng Anh mô tả lookbook"
+}`;
+
+        const userContent = `Trang phục: ${dress}\nQuy cách: ${lapel}\nPhụ kiện: ${accessories.join(', ')}\nBối cảnh: ${context}`;
+        const candidateModels = ['gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-2.5-flash'];
+        let lastError = null;
+
+        for (const model of candidateModels) {
+            try {
+                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ role: "user", parts: [{ text: systemPrompt + "\n\n" + userContent }] }]
+                    })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    let rawText = data.candidates[0].content.parts[0].text;
+                    rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+                    return JSON.parse(rawText);
+                }
+                const errDetail = await res.json().catch(() => ({}));
+                lastError = errDetail.error?.message || `HTTP ${res.status}`;
+            } catch (err) {
+                lastError = err.message;
+            }
+        }
+        throw new Error(lastError || "Dịch vụ bận.");
+    }
+
+    function generateLocalSimulation(dress, lapel, accessories, context) {
+        const isViolation = lapel.includes("Cố tình biến tấu sai");
+
+        if (isViolation) {
+            return {
+                status: "Violation",
+                outfit_name: "Cảnh Báo Biến Tấu Sai Lệch Bản Sắc",
+                cultural_analysis: "CẢNH BÁO VĂN HÓA: Cách kết hợp này làm mất đi phom dáng nguyên bản và ý nghĩa tôn nghiêm của trang phục dân tộc. Cần giữ vẹn nguyên cấu trúc thân áo và hoa văn truyền thống.",
+                harmony_score: 30,
+                heritage_title: "Nguyên tắc bảo tồn di sản sống",
+                heritage_meaning: "Sáng tạo cách tân luôn cần song hành với sự am hiểu và tôn trọng cội nguồn gốc tích của trang phục.",
+                image_prompt: "[BỊ CHẶN BỞI CULTURAL GUARDRAIL] Không xuất prompt hình ảnh đối với các thiết kế phạm húy hoặc sai lệch bản sắc."
+            };
+        }
+
+        const heritageData = {
+            "Áo Dài Truyền Thống": {
+                title: "Áo Dài - Quốc Phục Việt Nam",
+                meaning: "Biểu tượng thanh tao, kín đáo mà tôn vinh nét đẹp duyên dáng của người Việt qua nhiều thế hệ."
+            },
+            "Áo Tứ Thân Bắc Bộ": {
+                title: "Áo Tứ Thân Kinh Bắc",
+                meaning: "4 vạt áo tượng trưng cho tứ thân phụ mẫu ôm ấp, che chở người mặc."
+            },
+            "Áo Bà Ba Nam Bộ": {
+                title: "Áo Bà Ba Nam Bộ Mộc Mạc",
+                meaning: "Gắn liền với hình ảnh con người Nam Bộ bình dị, chân phương, thuận tiện cho sinh hoạt đời thường."
+            },
+            "Trang Phục Thổ Cẩm H'Mông": {
+                title: "Thổ Cẩm Đồng Bào H'Mông Vùng Cao",
+                meaning: "Kỹ thuật vẽ sáp ong và dệt vải tinh xảo, phản ánh tình yêu thiên nhiên và vũ trụ quan bản địa."
+            },
+            "Áo Nhật Bình Cung Đình": {
+                title: "Áo Nhật Bình Triều Nguyễn",
+                meaning: "Lễ phục cao quý của bậc hoàng tộc với cổ áo hình chữ nhật viền hoa văn ngũ hành trang trọng."
+            },
+            "Áo Chàm Truyền Thống Tây Bắc": {
+                title: "Áo Nhuộm Chàm Vùng Cao",
+                meaning: "Biểu trưng cho sự bền bỉ, gắn kết với thiên nhiên của đồng bào qua từng giọt màu thảo mộc."
+            }
+        };
+
+        const info = heritageData[dress] || {
+            title: dress,
+            meaning: "Nét đẹp truyền thống kết hợp hài hòa cùng hơi thở thời đại mới của giới trẻ."
+        };
+
+        return {
+            status: "Safe",
+            outfit_name: "Tân Thời Lookbook: " + dress,
+            cultural_analysis: `Phối đồ ấn tượng! Sự kết hợp giữa ${dress} với ${accessories.slice(0, 2).join(' & ')} vừa giữ được nét trang nhã nguyên bản, vừa mang lại sự trẻ trung, năng động tại ${context}.`,
+            harmony_score: 95,
+            heritage_title: info.title,
+            heritage_meaning: info.meaning,
+            image_prompt: `A modern Vietnamese Gen Z wearing stylish traditional ${dress}, beautifully paired with ${accessories.join(', ')}, scenic photo shoot at ${context}, natural warm daylight, high fashion editorial lookbook, 8k.`
+        };
+    }
+
+    function renderResult(data, currentImgUrl) {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('resultCard').style.display = 'block';
+
+        const badge = document.getElementById('statusBadge');
+        const mockupImg = document.getElementById('mockupImg');
+        const violationOverlay = document.getElementById('violationOverlay');
+
+        mockupImg.src = currentImgUrl;
+        badge.className = 'mockup-overlay-badge';
+
+        if (data.status === 'Safe') {
+            badge.classList.add('badge-safe');
+            badge.innerHTML = '✔ AN TOÀN VĂN HÓA (SAFE)';
+            violationOverlay.style.display = 'none';
+            mockupImg.style.filter = 'none';
+        } else if (data.status === 'Warning') {
+            badge.classList.add('badge-warning');
+            badge.innerHTML = '⚠ LƯU Ý BỐI CẢNH (WARNING)';
+            violationOverlay.style.display = 'none';
+            mockupImg.style.filter = 'none';
+        } else {
+            badge.classList.add('badge-violation');
+            badge.innerHTML = '✖ VI PHẠM QUY CHUẨN (VIOLATION)';
+            violationOverlay.style.display = 'flex';
+            mockupImg.style.filter = 'grayscale(100%) blur(4px)';
+        }
+
+        document.getElementById('outfitTitle').innerText = data.outfit_name || 'Set Đồ Cổ Phục';
+        document.getElementById('culturalNote').innerText = data.cultural_analysis;
+        
+        const score = data.harmony_score || 88;
+        document.getElementById('scoreText').innerText = `${score}/100`;
+        document.getElementById('scoreFill').style.width = `${score}%`;
+
+        document.getElementById('heritageTitle').innerText = data.heritage_title || 'Tri thức di sản';
+        document.getElementById('heritageDesc').innerText = data.heritage_meaning || '';
+        document.getElementById('imagePromptText').innerText = data.image_prompt || '';
+    }
+</script>
+</body>
+</html>
